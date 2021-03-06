@@ -13,7 +13,7 @@ function App() {
         <Navbar />
         <br/>
         <Switch>
-          <Route exact path="/" component={SelectUser}/>
+          <Route exact path="/" component={SelectUser} setCurrentUserID={setCurrentUserID}/>
           <Route exact path="/users" component={UsersList} />
         </Switch>
       </div>

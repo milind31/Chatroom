@@ -65,3 +65,5 @@ export default class SelectUser extends Component {
         )
     }
  }
+
+ export default SelectUser;
