@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-export default class SelectUser extends Component {
+export default class SelectUser extends Component{
     constructor(props) {
         super(props);
 
         this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
-        this.state = {username: '', users: []};
+        this.state = {username: '', userID: '', users: []};
     }
 
     componentDidMount() {
@@ -17,8 +17,9 @@ export default class SelectUser extends Component {
             .then(response => {
                 if (response.data.length > 0){
                     this.setState({
-                        users: response.data.map(user => user.username),
-                        username: response.data[0].username
+                        users: response.data.map(user => user),
+                        username: response.data[0].username,
+                        userID: response.data[0]._id,
                     })
                 }
             })
@@ -26,31 +27,32 @@ export default class SelectUser extends Component {
 
     onChangeUsername(e) {
         this.setState({
-            username: e.target.value
-        });
+            userID: e.target.value
+        })
+        console.log(e.target.value);
     }
 
     onSubmit(e) {
         e.preventDefault();
         window.location = '/users';
+        console.log(this.state.userID);
     }
 
     render() {
         return (
             <div>
-                <form onSubmit={this.onSubmit}>
+                <form onSubmit={this.onSubmit.bind(this)}>
                     <div className="form-group">
                         <label>Username: </label>
                         <select ref="userInput"
                             required
                             className="form-control"
-                            value={this.state.username}
+                            value={this.state.user}
                             onChange={this.onChangeUsername}>
                             {
                                 this.state.users.map(function(user) {
                                     return <option
-                                        key={user}
-                                        value={user}>{user}
+                                        value={user._id}>{user.username}
                                         </option>;
                                 })
                             }
@@ -65,5 +67,3 @@ export default class SelectUser extends Component {
         )
     }
  }
-
- export default SelectUser;
