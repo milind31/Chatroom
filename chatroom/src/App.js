@@ -6,19 +6,32 @@ import Navbar from "./components/navbar";
 import UsersList from './components/view-users';
 import SelectUser from './components/select-user';
 
+import { UserIDProvider } from './components/userIDContext';
+
 class App extends Component{
+  constructor(props){
+    super(props);
+    this.state={currentUserID:''};
+  }
+
+  getCurrentUserID(id){
+    this.setState({currentUserID: id});
+  }
+
   render() {
     return (
+      <UserIDProvider value={this.state.currentUserID}>
       <Router>
         <div className="container">
           <Navbar/>
           <br/>
           <Switch>
-            <Route exact path="/" render={() => <SelectUser/>}/>
+            <Route exact path="/" render={() => <SelectUser setCurrentUserID={this.getCurrentUserID.bind(this)}/>}/>
             <Route exact path="/users" component={UsersList} />
           </Switch>
         </div>
       </Router>
+      </UserIDProvider>
     );
   }
 }

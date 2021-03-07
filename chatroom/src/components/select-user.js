@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 
 export default class SelectUser extends Component{
     constructor(props) {
@@ -29,13 +28,12 @@ export default class SelectUser extends Component{
         this.setState({
             userID: e.target.value
         })
-        console.log(e.target.value);
     }
 
     onSubmit(e) {
         e.preventDefault();
         window.location = '/users';
-        console.log(this.state.userID);
+        this.props.setCurrentUserID(this.state.userID);
     }
 
     render() {
