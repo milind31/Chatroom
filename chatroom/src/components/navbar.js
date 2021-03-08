@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { UserIDConsumer } from './userIDContext';
 
 export default class Navbar extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {currentUserID: ''};
+    }
+
+
+    componentDidMount() {
+        const currentUserID = localStorage.getItem('currentUserID');
+        this.setState({ currentUserID: currentUserID});
+      }
 
     render() {
         return (
-            <UserIDConsumer>
-            { (id) => {
-                return (
                 <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
                 <Link to="/" className="navbar-brand">Chat.io</Link>
                 <div className="collapse navbar-collapse">
@@ -17,7 +24,7 @@ export default class Navbar extends Component {
                         <Link to="/users" className="nav-link">View Users</Link>
                     </li>
                     <li className="navbar-item">
-                        <Link to='/' className="nav-link">{id}</Link>
+                        <Link to={`/${this.state.currentUserID}`} className="nav-link">My Profile</Link>
                     </li>
                     <li className="navbar-item">
                         <Link to="/" className="nav-link">My Messages</Link>
@@ -25,10 +32,6 @@ export default class Navbar extends Component {
                 </ul>
                 </div>
                 </nav>
-                )
-            }
-            }
-            </UserIDConsumer>
         );
     }
 };

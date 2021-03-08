@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Navbar from './navbar';
 
 const User = props => (
   <tr>
@@ -44,6 +45,8 @@ export default class UsersList extends Component {
   render() {
     return (
       <div>
+        <Navbar/>
+        <br/>
         <h3>Users</h3>
         <table className="table">
           <thead className="thead-light">

@@ -33,12 +33,13 @@ export default class SelectUser extends Component{
     onSubmit(e) {
         e.preventDefault();
         window.location = '/users';
-        this.props.setCurrentUserID(this.state.userID);
+        localStorage.setItem('currentUserID', this.state.userID);
     }
 
     render() {
         return (
             <div>
+                <h1>Welcome! Please select your username to begin!</h1>
                 <form onSubmit={this.onSubmit.bind(this)}>
                     <div className="form-group">
                         <label>Username: </label>
