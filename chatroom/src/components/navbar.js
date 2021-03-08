@@ -24,7 +24,7 @@ export default class Navbar extends Component {
                         <Link to="/users" className="nav-link">View Users</Link>
                     </li>
                     <li className="navbar-item">
-                        <Link to={`/${this.state.currentUserID}`} className="nav-link">My Profile</Link>
+                        <Link to={`/users/${this.state.currentUserID}`} className="nav-link">My Profile</Link>
                     </li>
                     <li className="navbar-item">
                         <Link to="/users" className="nav-link">My Messages</Link>
