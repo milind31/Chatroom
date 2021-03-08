@@ -17,7 +17,7 @@ export default class Navbar extends Component {
     render() {
         return (
                 <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
-                <Link to="/" className="navbar-brand">Chat.io</Link>
+                <Link to="/users" className="navbar-brand">Chat.io</Link>
                 <div className="collapse navbar-collapse">
                 <ul className="navbar-nav mr-auto">
                     <li className="navbar-item">
@@ -27,7 +27,7 @@ export default class Navbar extends Component {
                         <Link to={`/${this.state.currentUserID}`} className="nav-link">My Profile</Link>
                     </li>
                     <li className="navbar-item">
-                        <Link to="/" className="nav-link">My Messages</Link>
+                        <Link to="/users" className="nav-link">My Messages</Link>
                     </li>
                 </ul>
                 </div>

@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import UsersList from './components/view-users';
 import SelectUser from './components/select-user';
+import ViewProfile from './components/view-profile';
 
 
 class App extends Component{
@@ -23,6 +24,7 @@ class App extends Component{
           <Switch>
             <Route exact path="/" render={() => <SelectUser setCurrentUserID={this.getCurrentUserID.bind(this)}/>}/>
             <Route exact path="/users" component={UsersList} />
+            <Route exact path={"/users/:id"} component={ViewProfile} />
           </Switch>
         </div>
       </Router>

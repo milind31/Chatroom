@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from './navbar';
+import ViewProfile from './view-profile';
+import { Link } from 'react-router-dom';
 
 const User = props => (
   <tr>
@@ -14,7 +15,7 @@ const User = props => (
     <td>{props.user.likes_sports? "Yes":"No"}</td>
     <td>{props.user.likes_to_travel? "Yes":"No"}</td>
     <td>
-      <Link to={"/users/"+props.user._id}>View</Link>
+      <Link to={"/users/" + props.user._id} render={() => <ViewProfile/>}>View</Link>
     </td>
   </tr>
 )
