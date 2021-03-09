@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Navbar from './navbar';
+import EditProfile from './edit-profile';
 
 export default class ViewProfile extends Component {
     constructor(props) {
@@ -15,11 +16,14 @@ export default class ViewProfile extends Component {
             country: '',
             favorite_music_genre: '',
             likes_sports:'',
-            likes_to_travel:''
+            likes_to_travel:'',
+            currentUserID: ''
         }
     }
 
     componentDidMount() {
+        const currentUserID = localStorage.getItem('currentUserID');
+        this.setState({ currentUserID: currentUserID});
         axios.get('http://localhost:5000/users/'+this.props.match.params.id)
         .then(response => {
             this.setState({
@@ -46,7 +50,8 @@ export default class ViewProfile extends Component {
             <h2>Favorite Music Genre: {this.state.favorite_music_genre}</h2>
             <h2>Likes Sports?: {this.state.likes_sports? "Yes":"No"}</h2>
             <h2>Likes To Travel?: {this.state.likes_to_travel? "Yes":"No"}</h2>
-            <Button>Message</Button>
+            { this.props.match.params.id === this.state.currentUserID && <Button href={"/users/edit/" + this.state.currentUserID} render={() => <EditProfile/>}>Edit</Button> }
+            { !(this.props.match.params.id === this.state.currentUserID) && <Button>Message</Button> }
         </div>
         )
     }
