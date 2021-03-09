@@ -61,7 +61,7 @@ export default class SelectUser extends Component{
                         <input type="submit" value="Select User" className="btn btn-primary"></input>
                     </div>
                 </form>
-                <a href="/users/add">Create New User</a>
+                <a href="/users/create">Create New User</a>
             </div>
         )
     }

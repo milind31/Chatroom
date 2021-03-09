@@ -6,6 +6,7 @@ import UsersList from './components/view-users';
 import SelectUser from './components/select-user';
 import ViewProfile from './components/view-profile';
 import EditProfile from './components/edit-profile';
+import CreateProfile from './components/create-user';
 
 
 class App extends Component{
@@ -25,6 +26,7 @@ class App extends Component{
           <Switch>
             <Route exact path="/" render={() => <SelectUser setCurrentUserID={this.getCurrentUserID.bind(this)}/>}/>
             <Route exact path="/users" component={UsersList} />
+            <Route exact path={"/users/create"} component={CreateProfile} />
             <Route exact path={"/users/:id"} component={ViewProfile} />
             <Route exact path={"/users/edit/:id"} component={EditProfile} />
           </Switch>

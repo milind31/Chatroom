@@ -60,6 +60,7 @@ export default class UsersList extends Component {
               <th>Favorite Music Genre</th>
               <th>Likes Sports</th>
               <th>Likes to Travel</th>
+              <th> </th>
             </tr>
           </thead>
           <tbody>
