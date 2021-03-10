@@ -3,6 +3,7 @@ import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Navbar from './navbar';
 import EditProfile from './edit-profile';
+import SendMessage from './send-message';
 
 export default class ViewProfile extends Component {
     constructor(props) {
@@ -51,7 +52,7 @@ export default class ViewProfile extends Component {
             <h2>Likes Sports?: {this.state.likes_sports? "Yes":"No"}</h2>
             <h2>Likes To Travel?: {this.state.likes_to_travel? "Yes":"No"}</h2>
             { this.props.match.params.id === this.state.currentUserID && <Button href={"/users/edit/" + this.state.currentUserID} render={() => <EditProfile/>}>Edit</Button> }
-            { !(this.props.match.params.id === this.state.currentUserID) && <Button>Message</Button> }
+            { !(this.props.match.params.id === this.state.currentUserID) && <Button href={"/message/" + this.props.match.params.id} render={() => <SendMessage/>}>Message</Button> }
         </div>
         )
     }

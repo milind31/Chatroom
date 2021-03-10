@@ -7,6 +7,7 @@ import SelectUser from './components/select-user';
 import ViewProfile from './components/view-profile';
 import EditProfile from './components/edit-profile';
 import CreateProfile from './components/create-user';
+import SendMessage from './components/send-message';
 
 
 class App extends Component{
@@ -29,6 +30,7 @@ class App extends Component{
             <Route exact path={"/users/create"} component={CreateProfile} />
             <Route exact path={"/users/:id"} component={ViewProfile} />
             <Route exact path={"/users/edit/:id"} component={EditProfile} />
+            <Route exact path={"/message/:id"} component={SendMessage} />
           </Switch>
         </div>
       </Router>
