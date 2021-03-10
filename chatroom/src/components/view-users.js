@@ -10,7 +10,6 @@ const User = props => (
     <td>{props.user.occupation}</td>
     <td>{props.user.city}</td>
     <td>{props.user.state}</td>
-    <td>{props.user.country}</td>
     <td>{props.user.favorite_music_genre}</td>
     <td>{props.user.likes_sports? "Yes":"No"}</td>
     <td>{props.user.likes_to_travel? "Yes":"No"}</td>
@@ -56,7 +55,6 @@ export default class UsersList extends Component {
               <th>Occupation</th>
               <th>City</th>
               <th>State</th>
-              <th>Country</th>
               <th>Favorite Music Genre</th>
               <th>Likes Sports</th>
               <th>Likes to Travel</th>

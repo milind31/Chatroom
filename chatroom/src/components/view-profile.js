@@ -14,7 +14,6 @@ export default class ViewProfile extends Component {
             occupation: '',
             city: '',
             state: '',
-            country: '',
             favorite_music_genre: '',
             likes_sports:'',
             likes_to_travel:'',
@@ -32,7 +31,6 @@ export default class ViewProfile extends Component {
                 occupation: response.data.occupation,
                 city: response.data.city,
                 state: response.data.state,
-                country: response.data.country,
                 favorite_music_genre: response.data.favorite_music_genre,
                 likes_sports: response.data.likes_sports,
                 likes_to_travel: response.data.likes_to_travel
@@ -47,7 +45,7 @@ export default class ViewProfile extends Component {
             <br/>
             <h1>{this.state.username}</h1>
             <h2>Occupation: {this.state.occupation}</h2>
-            <h2>Location: {this.state.city}, {this.state.state}, {this.state.country}</h2>
+            <h2>Location: {this.state.city}, {this.state.state}</h2>
             <h2>Favorite Music Genre: {this.state.favorite_music_genre}</h2>
             <h2>Likes Sports?: {this.state.likes_sports? "Yes":"No"}</h2>
             <h2>Likes To Travel?: {this.state.likes_to_travel? "Yes":"No"}</h2>

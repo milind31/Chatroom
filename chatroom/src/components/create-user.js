@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Navbar from './navbar';
 
 export default class CreateProfile extends Component {
     constructor(props) {
@@ -10,7 +9,6 @@ export default class CreateProfile extends Component {
         this.onChangeOccupation = this.onChangeOccupation.bind(this);
         this.onChangeCity = this.onChangeCity.bind(this);
         this.onChangeState = this.onChangeState.bind(this);
-        this.onChangeCountry = this.onChangeCountry.bind(this);
         this.onChangeFavoriteMusicGenre = this.onChangeFavoriteMusicGenre.bind(this);
         this.onChangeLikesSports = this.onChangeLikesSports.bind(this);
         this.onChangeLikesToTravel = this.onChangeLikesToTravel.bind(this);
@@ -21,7 +19,6 @@ export default class CreateProfile extends Component {
             occupation: '',
             city: '',
             state: '',
-            country: '',
             favorite_music_genre: '',
             likes_sports: '',
             likes_to_travel: ''
@@ -52,12 +49,6 @@ export default class CreateProfile extends Component {
         });
     }
 
-    onChangeCountry(e) {
-        this.setState({
-            country: e.target.value
-        });
-    }
-
     onChangeLikesToTravel(e) {
         this.setState({
             likes_to_travel: e.target.value
@@ -85,7 +76,6 @@ export default class CreateProfile extends Component {
             occupation: this.state.occupation,
             city: this.state.city,
             state: this.state.state,
-            country: this.state.country,
             favorite_music_genre: this.state.favorite_music_genre,
             likes_sports: this.state.likes_sports,
             likes_to_travel: this.state.likes_to_travel
@@ -100,9 +90,7 @@ export default class CreateProfile extends Component {
     render() {
         return (
         <div>
-            <Navbar/>
-            <br/>
-            <h3>Edit User Info</h3>
+            <h3>Create User</h3>
             <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                     <label>Username: </label>
@@ -194,15 +182,6 @@ export default class CreateProfile extends Component {
                     </select>
                 </div>
                 <div className="form-group">
-                    <label>Country: </label>
-                    <input type="text"
-                        required
-                        className="form-control"
-                        value={this.state.country}
-                        onChange={this.onChangeCountry}
-                        />
-                </div>
-                <div className="form-group">
                     <label>Favorite Music Genre:</label>
                     <select ref="userInput"
                         required
@@ -246,7 +225,7 @@ export default class CreateProfile extends Component {
                     </select>
                 </div>
                 <div className="form-group">
-                    <input type="submit" value="Edit User Info" className="btn btn-primary"></input>
+                    <input type="submit" value="Create User" className="btn btn-primary"></input>
                 </div>
 
             </form>

@@ -24,11 +24,6 @@ const userProfileSchema = new Schema({
         type: String,
         required: true
     },
-    country:
-    {
-        type: String,
-        required: true
-    },
     favorite_music_genre:
     {
         type: String

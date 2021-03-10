@@ -9,7 +9,6 @@ export default class EditProfile extends Component {
         this.onChangeOccupation = this.onChangeOccupation.bind(this);
         this.onChangeCity = this.onChangeCity.bind(this);
         this.onChangeState = this.onChangeState.bind(this);
-        this.onChangeCountry = this.onChangeCountry.bind(this);
         this.onChangeFavoriteMusicGenre = this.onChangeFavoriteMusicGenre.bind(this);
         this.onChangeLikesSports = this.onChangeLikesSports.bind(this);
         this.onChangeLikesToTravel = this.onChangeLikesToTravel.bind(this);
@@ -20,7 +19,6 @@ export default class EditProfile extends Component {
             occupation: '',
             city: '',
             state: '',
-            country: '',
             favorite_music_genre: '',
             likes_sports: '',
             likes_to_travel: ''
@@ -36,7 +34,6 @@ export default class EditProfile extends Component {
                 occupation: response.data.occupation,
                 city: response.data.city,
                 state: response.data.state,
-                country: response.data.country,
                 favorite_music_genre: response.data.favorite_music_genre,
                 likes_sports: response.data.likes_sports,
                 likes_to_travel: response.data.likes_to_travel
@@ -60,12 +57,6 @@ export default class EditProfile extends Component {
     onChangeState(e) {
         this.setState({
             state: e.target.value
-        });
-    }
-
-    onChangeCountry(e) {
-        this.setState({
-            country: e.target.value
         });
     }
 
@@ -95,7 +86,6 @@ export default class EditProfile extends Component {
             occupation: this.state.occupation,
             city: this.state.city,
             state: this.state.state,
-            country: this.state.country,
             favorite_music_genre: this.state.favorite_music_genre,
             likes_sports: this.state.likes_sports,
             likes_to_travel: this.state.likes_to_travel
@@ -189,14 +179,6 @@ export default class EditProfile extends Component {
                         <option value="WI">Wisconsin</option>
                         <option value="WY">Wyoming</option>
                     </select>
-                </div>
-                <div className="form-group">
-                    <label>Country: </label>
-                    <input type="text"
-                        className="form-control"
-                        value={this.state.country}
-                        onChange={this.onChangeCountry}
-                        />
                 </div>
                 <div className="form-group">
                     <label>Favorite Music Genre:</label>

@@ -12,7 +12,6 @@ router.route('/add').post((req, res) => {
     const occupation = req.body.occupation;
     const city = req.body.city;
     const state = req.body.state;
-    const country = req.body.country;
     const favorite_music_genre = req.body.favorite_music_genre;
     const likes_sports = req.body.likes_sports;
     const likes_to_travel = req.body.likes_to_travel;
@@ -22,7 +21,6 @@ router.route('/add').post((req, res) => {
         occupation,
         city,
         state,
-        country,
         favorite_music_genre,
         likes_sports,
         likes_to_travel
@@ -54,7 +52,6 @@ router.route('/update/:id').post((req, res) =>{
             user.occupation = req.body.occupation;
             user.city = req.body.city;
             user.state = req.body.state;
-            user.country = req.body.country;
             user.favorite_music_genre = req.body.favorite_music_genre;
             user.likes_sports = req.body.likes_sports;
             user.likes_to_travel = req.body.likes_to_travel;
