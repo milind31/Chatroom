@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Navbar from './navbar';
 import EditProfile from './edit-profile';
 import SendMessage from './send-message';
+import ViewMessages from './view-messages';
 
 export default class ViewProfile extends Component {
     constructor(props) {

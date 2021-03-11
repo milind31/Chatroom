@@ -37,7 +37,7 @@ router.route('/userfrom/:userfrom').get((req, res) => {
 });
 
 router.route('/userto/:userto').get((req, res) => {
-    chatMessage.find({user_from: req.params.userto})
+    chatMessage.find({user_to: req.params.userto})
         .then(msg => res.json(msg))
         .catch(err => res.status(400).json('Error: ' + err));
 });

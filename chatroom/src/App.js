@@ -8,6 +8,7 @@ import ViewProfile from './components/view-profile';
 import EditProfile from './components/edit-profile';
 import CreateProfile from './components/create-user';
 import SendMessage from './components/send-message';
+import ViewMessages from './components/view-messages';
 
 
 class App extends Component{
@@ -31,6 +32,7 @@ class App extends Component{
             <Route exact path={"/users/:id"} component={ViewProfile} />
             <Route exact path={"/users/edit/:id"} component={EditProfile} />
             <Route exact path={"/message/:id"} component={SendMessage} />
+            <Route exact path={"/messages/view/:id"} component={ViewMessages} />
           </Switch>
         </div>
       </Router>
