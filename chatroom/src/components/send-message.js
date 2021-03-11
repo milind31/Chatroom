@@ -12,7 +12,9 @@ export default class SendMessage extends Component {
         this.state = {
             message_body:'',
             user_to:'',
-            user_from:''
+            user_to_id:'',
+            user_from:'',
+            user_from_id:''
         }
     }
 
@@ -21,13 +23,16 @@ export default class SendMessage extends Component {
         axios.get('http://localhost:5000/users/'+currentUserID)
         .then(response => {
             this.setState({
-                user_from: response.data.username
+                user_from: response.data.username,
+                user_from_id: currentUserID
+
             })
         })
         axios.get('http://localhost:5000/users/'+this.props.match.params.id)
         .then(response => {
             this.setState({
-                user_to: response.data.username
+                user_to: response.data.username,
+                user_to_id: this.props.match.params.id
             })
         })
     }
@@ -43,7 +48,9 @@ export default class SendMessage extends Component {
 
         const message = {
             user_from: this.state.user_from,
+            user_from_id: this.state.user_from_id,
             user_to: this.state.user_to,
+            user_to_id:this.state.user_to_id,
             message: this.state.message_body
         }
 

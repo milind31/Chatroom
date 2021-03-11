@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Navbar from './navbar';
+import { Link } from 'react-router-dom';
 
 const Message = props => (
   <div className='message'>
     <h3>{props.message.user_from}</h3>
     <p>{props.message.message}</p>
+    <Link to={`/messages/view/conversation/${props.message.user_from_id}`}>View Full Conversation</Link>
   </div>
 )
 
@@ -51,7 +53,7 @@ export default class ViewMessages extends Component {
 
   }
 
-  messageList() {
+  incomingMessageList() {
     return this.state.incoming_messages.map(currentmessage => {
       return <Message message={currentmessage} key={currentmessage._id}/>;
     })
@@ -63,9 +65,9 @@ export default class ViewMessages extends Component {
     <Navbar/>
     <br/>
       <div className="messageLog">
-          <h1>Message Log:</h1>
+          <h1>All Messages:</h1>
           <body>
-            { this.messageList() }
+            { this.incomingMessageList() }
           </body>
       </div>
     </div>
