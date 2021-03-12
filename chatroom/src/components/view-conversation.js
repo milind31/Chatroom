@@ -1,60 +1,65 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Navbar from './navbar';
-import { Link } from 'react-router-dom';
 
 const Message = props => (
   <div className='message'>
     <h3>{props.message.user_from}</h3>
-    <p>{props.message.message}</p>
-    <Link to={`/messages/view/conversation/${props.message.user_from_id}`}>View Full Conversation</Link>
+    <body>
+        <p>{props.message.message}</p>
+        <small>{"sent on " + props.message.createdAt.replace('T', ' at ').slice(0, -5)}</small>
+    </body>
   </div>
 )
 
-export default class ViewMessages extends Component {
+export default class ViewConversation extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {current_user: '', other_user: '', outgoing_messages: [], incoming_messages: []};
+    this.state = {current_user: '', other_user: '', messages: []};
   }
 
   componentDidMount() {
-    //find current user
+    //find current user and add messages
     const currentUserID = localStorage.getItem('currentUserID');
     axios.get('http://localhost:5000/users/'+currentUserID)
       .then(response => {
           this.setState({
             current_user: response.data.username
       })
-      //get messages
       axios.get('http://localhost:5000/messages/userto/'+this.state.current_user)
         .then(response => {
-          this.setState({ incoming_messages: response.data })
+          this.setState({ messages: response.data })
       })
         .catch((error) => {
           console.log(error);
       })
-    })
 
-    //find other user //coding
-    axios.get('http://localhost:5000/users/'+this.props.match.params.id)
+      //find other user and add messages
+      axios.get('http://localhost:5000/users/'+this.props.match.params.id)
       .then(response => {
-        this.setState({
-            other_user: response.data.username
+      this.setState({
+          other_user: response.data.username
       })
       axios.get('http://localhost:5000/messages/userto/'+this.state.other_user)
       .then(response => {
-        this.setState({ outgoing_messages: response.data })
+        this.setState({ messages: this.state.messages.concat(response.data) })
       })
       .catch((error) => {
         console.log(error);
       })
     })
-
+  })
   }
 
-  incomingMessageList() {
-    return this.state.incoming_messages.map(currentmessage => {
+  sortedMessages(){
+      return this.state.messages.sort(function(a,b){
+        return new Date(a.createdAt) - new Date(b.createdAt);
+      });
+  }
+
+  messageList() {
+    return this.sortedMessages().map(currentmessage => {
       return <Message message={currentmessage} key={currentmessage._id}/>;
     })
   }
@@ -64,10 +69,10 @@ export default class ViewMessages extends Component {
     <div>
     <Navbar/>
     <br/>
-      <div className="messageLog">
-          <h1>All Messages:</h1>
+    <div className="messageLog">
+          <h1>Conversation with {this.state.other_user}:</h1>
           <body>
-            { this.incomingMessageList() }
+            { this.messageList() }
           </body>
       </div>
     </div>
