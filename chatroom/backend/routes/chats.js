@@ -34,14 +34,16 @@ router.route('/:id').get((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/userfrom/:userfrom').get((req, res) => {
-    chatMessage.find({user_from: req.params.userfrom})
+//get messages sent to one user
+router.route('/userto/:userto').get((req, res) => { 
+    chatMessage.find({user_to: req.params.userto})
         .then(msg => res.json(msg))
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/userto/:userto').get((req, res) => {
-    chatMessage.find({user_to: req.params.userto})
+//get messages between two users
+router.route('/:userto/:userfrom').get((req, res) => { 
+    chatMessage.find({user_to: req.params.userto, user_from: req.params.userfrom})
         .then(msg => res.json(msg))
         .catch(err => res.status(400).json('Error: ' + err));
 });

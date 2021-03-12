@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Button from 'react-bootstrap/Button';
 import Navbar from './navbar';
+import SendMessage from './send-message';
 
 const Message = props => (
   <div className='message'>
     <h3>{props.message.user_from}</h3>
-    <body>
+    <div>
         <p>{props.message.message}</p>
         <small>{"sent on " + props.message.createdAt.replace('T', ' at ').slice(0, -5)}</small>
-    </body>
+    </div>
   </div>
 )
 
@@ -20,30 +22,33 @@ export default class ViewConversation extends Component {
   }
 
   componentDidMount() {
-    //find current user and add messages
+    //find current user's username
     const currentUserID = localStorage.getItem('currentUserID');
     axios.get('http://localhost:5000/users/'+currentUserID)
-      .then(response => {
+      .then(currentUserResponse => {
           this.setState({
-            current_user: response.data.username
+            current_user: currentUserResponse.data.username
       })
-      axios.get('http://localhost:5000/messages/userto/'+this.state.current_user)
-        .then(response => {
-          this.setState({ messages: response.data })
-      })
-        .catch((error) => {
-          console.log(error);
+      //find other user's username
+      axios.get('http://localhost:5000/users/'+this.props.match.params.id)
+      .then(otherUserResponse => {
+      this.setState({
+          other_user: otherUserResponse.data.username
       })
 
-      //find other user and add messages
-      axios.get('http://localhost:5000/users/'+this.props.match.params.id)
-      .then(response => {
-      this.setState({
-          other_user: response.data.username
-      })
-      axios.get('http://localhost:5000/messages/userto/'+this.state.other_user)
-      .then(response => {
-        this.setState({ messages: this.state.messages.concat(response.data) })
+      //get messages to other_user from current_user
+      axios.get('http://localhost:5000/messages/'+ this.state.other_user + '/' + this.state.current_user)
+      .then(toOtherFromCurrentResponse => {
+        this.setState({ messages: toOtherFromCurrentResponse.data})
+
+        //get messages to current_user from other_user
+        axios.get('http://localhost:5000/messages/'+ this.state.current_user + '/' + this.state.other_user)
+        .then(toCurrentFromOtherResponse => {
+          this.setState({ messages: this.state.messages.concat(toCurrentFromOtherResponse.data) })
+        })
+        .catch((error) => {
+          console.log(error);
+        })
       })
       .catch((error) => {
         console.log(error);
@@ -67,14 +72,15 @@ export default class ViewConversation extends Component {
   render() {
     return (
     <div>
-    <Navbar/>
-    <br/>
-    <div className="messageLog">
-          <h1>Conversation with {this.state.other_user}:</h1>
-          <body>
-            { this.messageList() }
-          </body>
-      </div>
+        <Navbar/>
+        <br/>
+        <div className="messageLog">
+            <h1>Conversation with {this.state.other_user}:</h1>
+            <div>
+                { this.messageList() }
+            </div>
+        </div>
+        { !(this.props.match.params.id === this.state.currentUserID) && <Button href={"/message/" + this.props.match.params.id} render={() => <SendMessage/>}>Send Message</Button> }
     </div>
     )
   }

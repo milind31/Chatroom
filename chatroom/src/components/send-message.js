@@ -57,14 +57,14 @@ export default class SendMessage extends Component {
         axios.post('http://localhost:5000/messages/add', message)
             .then(res => console.log(res.data));
 
-        window.location = '/users/';
+        window.location = "/messages/view/conversation/" + this.props.match.params.id;
     }
 
     render() {
         return (
         <div>
             <Navbar/><br/>
-            <h3>Edit User Info</h3>
+            <h3>Enter Message</h3>
             <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                     <label>Enter Message: </label>
@@ -78,7 +78,6 @@ export default class SendMessage extends Component {
                 <div className="form-group">
                     <input type="submit" value="Send" className="btn btn-primary"></input>
                 </div>
-
             </form>
         </div>
         )
