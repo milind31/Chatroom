@@ -10,7 +10,9 @@ import CreateProfile from './components/create-user';
 import SendMessage from './components/send-message';
 import ViewMessages from './components/view-recent-messages';
 import ViewConversation from './components/view-conversation';
-
+import PageNotFound from './components/page-not-found';
+import UserNotFound from './components/user-not-found';
+import ConversationNotFound from './components/conversation-not-found';
 
 class App extends Component{
   constructor(props){
@@ -29,12 +31,15 @@ class App extends Component{
           <Switch>
             <Route exact path="/" render={() => <SelectUser setCurrentUserID={this.getCurrentUserID.bind(this)}/>}/>
             <Route exact path="/users" component={UsersList} />
+            <Route exact path={"/users/notfound"} component={UserNotFound} />
             <Route exact path={"/users/create"} component={CreateProfile} />
             <Route exact path={"/users/:id"} component={ViewProfile} />
             <Route exact path={"/users/edit/:id"} component={EditProfile} />
             <Route exact path={"/message/:id"} component={SendMessage} />
+            <Route exact path={"/messages/view/conversation/notfound"} component={ConversationNotFound} />
             <Route exact path={"/messages/view/:id"} component={ViewMessages} />
             <Route exact path={"/messages/view/conversation/:id"} component={ViewConversation} />
+            <Route path="*" component={PageNotFound} />
           </Switch>
         </div>
       </Router>

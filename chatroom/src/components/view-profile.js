@@ -36,6 +36,9 @@ export default class ViewProfile extends Component {
                 likes_to_travel: response.data.likes_to_travel
             })
         })
+        .catch(() => {
+            window.location = "/users/notfound";
+        })
     }
 
     render() {

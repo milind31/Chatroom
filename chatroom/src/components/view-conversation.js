@@ -54,6 +54,9 @@ export default class ViewConversation extends Component {
         console.log(error);
       })
     })
+    .catch(() => {
+      window.location = "/messages/view/conversation/notfound";
+  })
   })
   }
 
