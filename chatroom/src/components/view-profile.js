@@ -17,7 +17,8 @@ export default class ViewProfile extends Component {
             favorite_music_genre: '',
             likes_sports:'',
             likes_to_travel:'',
-            currentUserID: ''
+            currentUserID: '',
+            loading: true
         }
     }
 
@@ -33,7 +34,8 @@ export default class ViewProfile extends Component {
                 state: response.data.state,
                 favorite_music_genre: response.data.favorite_music_genre,
                 likes_sports: response.data.likes_sports,
-                likes_to_travel: response.data.likes_to_travel
+                likes_to_travel: response.data.likes_to_travel,
+                loading: false
             })
         })
         .catch(() => {
@@ -46,7 +48,8 @@ export default class ViewProfile extends Component {
         <div>
             <Navbar/>
             <br/>
-            <h1>{this.state.username}</h1>
+            {this.state.loading && <h1>Loading...</h1>}
+            <h1>{!this.state.loading && this.state.username}</h1>
             <h2>Occupation: {this.state.occupation}</h2>
             <h2>Location: {this.state.city}, {this.state.state}</h2>
             <h2>Favorite Music Genre: {this.state.favorite_music_genre}</h2>

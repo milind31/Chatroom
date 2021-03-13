@@ -23,13 +23,13 @@ export default class UsersList extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {users: []};
+    this.state = {users: [], loading: true};
   }
 
   componentDidMount() {
     axios.get('http://localhost:5000/users/')
       .then(response => {
-        this.setState({ users: response.data })
+        this.setState({ users: response.data , loading: false})
       })
       .catch((error) => {
         console.log(error);
@@ -47,8 +47,10 @@ export default class UsersList extends Component {
       <div>
         <Navbar/>
         <br/>
-        <h3>Users</h3>
+        { this.state.loading && <div>Loading...</div> }
+        { !this.state.loading && <h3>Users</h3> }
         <table className="table">
+          {!this.state.loading && (
           <thead className="thead-light">
             <tr>
               <th>Username</th>
@@ -58,11 +60,12 @@ export default class UsersList extends Component {
               <th>Favorite Music Genre</th>
               <th>Likes Sports</th>
               <th>Likes to Travel</th>
-              <th> </th>
+              <th></th>
             </tr>
           </thead>
+          )}
           <tbody>
-            { this.usersList() }
+            {!this.state.loading && this.usersList() }
           </tbody>
         </table>
       </div>

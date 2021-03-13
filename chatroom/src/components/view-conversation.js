@@ -18,7 +18,7 @@ export default class ViewConversation extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {current_user: '', other_user: '', messages: []};
+    this.state = {current_user: '', other_user: '', messages: [], loading: true};
   }
 
   componentDidMount() {
@@ -44,7 +44,7 @@ export default class ViewConversation extends Component {
         //get messages to current_user from other_user
         axios.get('http://localhost:5000/messages/'+ this.state.current_user + '/' + this.state.other_user)
         .then(toCurrentFromOtherResponse => {
-          this.setState({ messages: this.state.messages.concat(toCurrentFromOtherResponse.data) })
+          this.setState({ messages: this.state.messages.concat(toCurrentFromOtherResponse.data), loading: false })
         })
         .catch((error) => {
           console.log(error);
@@ -77,13 +77,15 @@ export default class ViewConversation extends Component {
     <div>
         <Navbar/>
         <br/>
+        {this.state.loading && <div>Loading...</div>}
+        {!this.state.loading && (
         <div className="messageLog">
             <h1>Conversation with {this.state.other_user}:</h1>
             <div>
                 { this.messageList() }
             </div>
-        </div>
-        { !(this.props.match.params.id === this.state.currentUserID) && <Button href={"/message/" + this.props.match.params.id} render={() => <SendMessage/>}>Send Message</Button> }
+        </div>)}
+        {!this.state.loading && !(this.props.match.params.id === this.state.currentUserID) && <Button href={"/message/" + this.props.match.params.id} render={() => <SendMessage/>}>Send Message</Button> }
     </div>
     )
   }

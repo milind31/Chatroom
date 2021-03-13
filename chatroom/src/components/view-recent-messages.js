@@ -15,41 +15,30 @@ export default class ViewMessages extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {current_user: '', other_user: '', outgoing_messages: [], incoming_messages: []};
+    this.state = {current_user: '', other_user: '', outgoing_messages: [], incoming_messages: [], loading: true};
   }
 
   componentDidMount() {
     //find current user
     const currentUserID = localStorage.getItem('currentUserID');
     axios.get('http://localhost:5000/users/'+currentUserID)
-      .then(response => {
+        .then(response => {
           this.setState({
             current_user: response.data.username
-      })
+        })
       //get messages
       axios.get('http://localhost:5000/messages/userto/'+this.state.current_user)
         .then(response => {
-          this.setState({ incoming_messages: response.data })
-      })
+          this.setState({ incoming_messages: response.data, loading: false })
+        })
         .catch((error) => {
           console.log(error);
+        })
       })
-    })
+      .catch(() => {
+        window.location = "/messages/view/conversation/notfound";
+      })
 
-    //find other user
-    axios.get('http://localhost:5000/users/'+this.props.match.params.id)
-      .then(response => {
-        this.setState({
-            other_user: response.data.username
-      })
-      axios.get('http://localhost:5000/messages/userto/'+this.state.other_user)
-      .then(response => {
-        this.setState({ outgoing_messages: response.data })
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-    })
   }
 
   incomingMessageList() {
@@ -64,9 +53,10 @@ export default class ViewMessages extends Component {
     <Navbar/>
     <br/>
       <div className="messageLog">
-          <h1>Recent Messages:</h1>
+          {this.state.loading && <div>Loading...</div> }
+          {!this.state.loading && <h1>Recent Messages:</h1> }
           <body>
-            { this.incomingMessageList() }
+            { !this.state.loading && this.incomingMessageList() }
           </body>
       </div>
     </div>
