@@ -220,7 +220,6 @@ export default class EditProfile extends Component {
                 <div className="form-group">
                     <input type="submit" value="Edit User Info" className="btn btn-primary"></input>
                 </div>
-
             </form>
         </div>
         )
