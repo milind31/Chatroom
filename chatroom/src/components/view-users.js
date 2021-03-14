@@ -65,10 +65,10 @@ export default class UsersList extends Component {
       filteredUsers = filteredUsers.filter(el => el.favorite_music_genre === this.state.filter_genre_by);
     }
     if (this.state.filter_sports_by !== ''){
-      filteredUsers = filteredUsers.filter(el => el.likes_sports? "Yes":"No" === this.state.filter_sports_by);
+      filteredUsers = filteredUsers.filter(el => (el.likes_sports? "Yes":"No") === this.state.filter_sports_by);
     }
     if (this.state.filter_travel_by !== ''){
-      filteredUsers = filteredUsers.filter(el => el.likes_to_travel? "Yes":"No" === this.state.filter_travel_by);
+      filteredUsers = filteredUsers.filter(el => (el.likes_to_travel? "Yes":"No") === this.state.filter_travel_by);
     }
     return filteredUsers.map(currentuser => {
       return <User user={currentuser} key={currentuser._id}/>;
@@ -84,6 +84,7 @@ export default class UsersList extends Component {
         { !this.state.loading && <h3>Users</h3> }
         
         {/*Filter Bar*/}
+        { !this.state.loading && (
         <Form>
             <Row>
                 <Col>
@@ -121,7 +122,7 @@ export default class UsersList extends Component {
                     </select>
                 </Col>
             </Row>
-        </Form>
+        </Form> )}
 
         <table className="table">
           {!this.state.loading && (
