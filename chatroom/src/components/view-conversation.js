@@ -74,18 +74,18 @@ export default class ViewConversation extends Component {
 
   render() {
     return (
-    <div>
+    <div className='view-conversation'>
         <Navbar/>
         <br/>
         {this.state.loading && <div>Loading...</div>}
         {!this.state.loading && (
-        <div className="messageLog">
+        <div className="message-log">
             <h1>Conversation with {this.state.other_user}:</h1>
             <div>
                 { this.messageList() }
             </div>
         </div>)}
-        {!this.state.loading && !(this.props.match.params.id === this.state.currentUserID) && <Button href={"/message/" + this.props.match.params.id} render={() => <SendMessage/>}>Send Message</Button> }
+        <div className='send-message'>{!this.state.loading && !(this.props.match.params.id === this.state.currentUserID) && <Button href={"/message/" + this.props.match.params.id} render={() => <SendMessage/>}>Send Message</Button> } </div>
     </div>
     )
   }

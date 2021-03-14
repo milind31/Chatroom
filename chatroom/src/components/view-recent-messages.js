@@ -7,7 +7,7 @@ const Message = props => (
   <div className='message'>
     <h3>{props.message.user_from}</h3>
     <p>{props.message.message}</p>
-    <Link to={`/messages/view/conversation/${props.message.user_from_id}`}>View Full Conversation</Link>
+    <div className="msg-link"><Link to={`/messages/view/conversation/${props.message.user_from_id}`} style={{ textDecoration: 'none' }}>View Full Conversation</Link></div>
   </div>
 )
 
@@ -52,12 +52,12 @@ export default class ViewMessages extends Component {
     <div>
     <Navbar/>
     <br/>
-      <div className="messageLog">
+      <div className="message-log">
           {this.state.loading && <div>Loading...</div> }
           {!this.state.loading && <h1>Recent Messages:</h1> }
-          <body>
+          <div className="recent-msgs">
             { !this.state.loading && this.incomingMessageList() }
-          </body>
+          </div>
       </div>
     </div>
     )

@@ -80,7 +80,7 @@ export default class ViewProfile extends Component {
                 <h3>Likes Sports?: {this.state.likes_sports? "Yes":"No"}</h3>
                 <h3>Likes To Travel?: {this.state.likes_to_travel? "Yes":"No"}</h3>
                     <div className='edit'>{ this.props.match.params.id === this.state.currentUserID && <Button href={"/users/edit/" + this.props.match.params.id} render={() => <EditProfile/>}>Edit</Button> }</div>
-                    <div className='message'>{ !(this.props.match.params.id === this.state.currentUserID) && <Button href={"/message/" + this.props.match.params.id} render={() => <SendMessage/>}>Message</Button>}</div>
+                    <div className='send-message'>{ !(this.props.match.params.id === this.state.currentUserID) && <Button href={"/message/" + this.props.match.params.id} render={() => <SendMessage/>}>Message</Button>}</div>
                     <div className='view-conversation'></div>{ !(this.props.match.params.id === this.state.currentUserID) && <Button className='view-conversation' href={"/messages/view/conversation/" + this.props.match.params.id} render={() => <SendMessage/>}>See Conversation</Button> }</div>
         </div>
         )
