@@ -81,7 +81,7 @@ export default class UsersList extends Component {
         <Navbar/>
         <br/>
         { this.state.loading && <div>Loading...</div> }
-        { !this.state.loading && <h3>Users</h3> }
+        { !this.state.loading && <h1>Users</h1> }
         
         {/*Filter Bar*/}
         { !this.state.loading && (

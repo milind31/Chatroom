@@ -48,16 +48,17 @@ export default class ViewProfile extends Component {
         <div>
             <Navbar/>
             <br/>
+            <div className="userInfo">
             {this.state.loading && <h1>Loading...</h1>}
-            <h1>{!this.state.loading && this.state.username}</h1>
-            <h2>Occupation: {this.state.occupation}</h2>
-            <h2>Location: {this.state.city}, {this.state.state}</h2>
-            <h2>Favorite Music Genre: {this.state.favorite_music_genre}</h2>
-            <h2>Likes Sports?: {this.state.likes_sports? "Yes":"No"}</h2>
-            <h2>Likes To Travel?: {this.state.likes_to_travel? "Yes":"No"}</h2>
-            { this.props.match.params.id === this.state.currentUserID && <Button href={"/users/edit/" + this.state.currentUserID} render={() => <EditProfile/>}>Edit</Button> }
-            { !(this.props.match.params.id === this.state.currentUserID) && <Button href={"/message/" + this.props.match.params.id} render={() => <SendMessage/>}>Message</Button> }
-            { !(this.props.match.params.id === this.state.currentUserID) && <Button href={"/messages/view/conversation/" + this.props.match.params.id} render={() => <SendMessage/>}>See Conversation</Button> }
+            <h1 className="usernameHeader">{!this.state.loading && this.state.username}</h1>
+                <h3>Occupation: {this.state.occupation}</h3>
+                <h3>Location: {this.state.city}, {this.state.state}</h3>
+                <h3>Favorite Music Genre: {this.state.favorite_music_genre}</h3>
+                <h3>Likes Sports?: {this.state.likes_sports? "Yes":"No"}</h3>
+                <h3>Likes To Travel?: {this.state.likes_to_travel? "Yes":"No"}</h3>
+                    <div className='edit'>{ this.props.match.params.id === this.state.currentUserID && <Button href={"/users/edit/" + this.props.match.params.id} render={() => <EditProfile/>}>Edit</Button> }</div>
+                    <div className='message'>{ !(this.props.match.params.id === this.state.currentUserID) && <Button href={"/message/" + this.props.match.params.id} render={() => <SendMessage/>}>Message</Button>}</div>
+                    <div className='view-conversation'></div>{ !(this.props.match.params.id === this.state.currentUserID) && <Button className='view-conversation' href={"/messages/view/conversation/" + this.props.match.params.id} render={() => <SendMessage/>}>See Conversation</Button> }</div>
         </div>
         )
     }
