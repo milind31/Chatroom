@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import ViewProfile from './view-profile';
 
 export default class Navbar extends Component {
     constructor(props) {
@@ -24,7 +25,7 @@ export default class Navbar extends Component {
                         <Link to="/users" className="nav-link">View Users</Link>
                     </li>
                     <li className="navbar-item">
-                        <Link to={`/users/${this.state.currentUserID}`} className="nav-link">My Profile</Link>
+                        <Link to={`/users/${this.state.currentUserID}`} className="nav-link" render={() => <ViewProfile/>}>My Profile</Link>
                     </li>
                     <li className="navbar-item">
                         <Link to={`/messages/view/${this.state.currentUserID}`} className="nav-link">My Messages</Link>

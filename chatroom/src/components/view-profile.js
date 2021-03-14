@@ -43,6 +43,29 @@ export default class ViewProfile extends Component {
         })
     }
 
+    componentDidUpdate(prevProps) {
+        if (this.props.match.params.id !== prevProps.match.params.id) {
+            const currentUserID = localStorage.getItem('currentUserID');
+            this.setState({ currentUserID: currentUserID, loading: true });
+            axios.get('http://localhost:5000/users/'+this.props.match.params.id)
+            .then(response => {
+                this.setState({
+                    username: response.data.username,
+                    occupation: response.data.occupation,
+                    city: response.data.city,
+                    state: response.data.state,
+                    favorite_music_genre: response.data.favorite_music_genre,
+                    likes_sports: response.data.likes_sports,
+                    likes_to_travel: response.data.likes_to_travel,
+                    loading: false
+                })
+            })
+            .catch(() => {
+                window.location = "/users/notfound";
+            })
+        }
+      }
+
     render() {
         return (
         <div>

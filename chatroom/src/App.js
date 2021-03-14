@@ -15,25 +15,16 @@ import UserNotFound from './components/user-not-found';
 import ConversationNotFound from './components/conversation-not-found';
 
 class App extends Component{
-  constructor(props){
-    super(props);
-    this.state={currentUserID:''};
-  }
-
-  getCurrentUserID(id){
-    this.setState({currentUserID: id});
-  }
-
   render() {
     return (
       <Router>
         <div className="container">
           <Switch>
-            <Route exact path="/" render={() => <SelectUser setCurrentUserID={this.getCurrentUserID.bind(this)}/>}/>
+            <Route exact path="/" render={() => <SelectUser/>}/>
             <Route exact path="/users" component={UsersList} />
             <Route exact path={"/users/notfound"} component={UserNotFound} />
             <Route exact path={"/users/create"} component={CreateProfile} />
-            <Route exact path={"/users/:id"} component={ViewProfile} />
+            <Route exact path={"/users/:id"} component={ViewProfile}/>
             <Route exact path={"/users/edit/:id"} component={EditProfile} />
             <Route exact path={"/message/:id"} component={SendMessage} />
             <Route exact path={"/messages/view/conversation/notfound"} component={ConversationNotFound} />
