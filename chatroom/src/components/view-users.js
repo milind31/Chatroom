@@ -16,6 +16,7 @@ const User = props => (
         <Card.Text>
           <h1>{props.user.username}</h1>
           <h3>{props.user.city}, {props.user.state}</h3>
+          <h4>{props.user.occupation}</h4>
           <p>Favorite Music Genre: {props.user.favorite_music_genre}</p>
           <p>{props.user.likes_sports? "Likes Sports":"Doesn't Like Sports"}</p>
           <p>{props.user.likes_to_travel? "Likes to Travel":"Doesn't Like to Travel"}</p>

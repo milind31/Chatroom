@@ -112,6 +112,25 @@ code {
   text-align: center;
   display: flex;
   align-items: center;
+  color: white;
+}
+
+.user-card h1{
+  font-size: 42px;
+}
+
+.user-card h3{
+  font-size: 25px;
+}
+
+.user-card h4{
+  margin-bottom: 15px;
+  font-size: 21px;
+}
+
+.user-card p{
+  font-size: 15px;
+  margin-bottom: 5px;
 }
 
 .card-group {
