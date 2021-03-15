@@ -13,6 +13,7 @@ import ViewConversation from './components/view-conversation';
 import PageNotFound from './components/page-not-found';
 import UserNotFound from './components/user-not-found';
 import ConversationNotFound from './components/conversation-not-found';
+import CannotAddUser from './components/cannot-add-user';
 
 class App extends Component{
   render() {
@@ -23,6 +24,7 @@ class App extends Component{
             <Route exact path="/" render={() => <SelectUser/>}/>
             <Route exact path="/users" component={UsersList} />
             <Route exact path={"/users/notfound"} component={UserNotFound} />
+            <Route exact path={"/users/failtoadd"} component={CannotAddUser} />
             <Route exact path={"/users/create"} component={CreateProfile} />
             <Route exact path={"/users/:id"} component={ViewProfile}/>
             <Route exact path={"/users/edit/:id"} component={EditProfile} />

@@ -21,7 +21,7 @@ export default class CreateProfile extends Component {
             state: '',
             favorite_music_genre: '',
             likes_sports: '',
-            likes_to_travel: ''
+            likes_to_travel: '',
         }
     }
 
@@ -82,13 +82,16 @@ export default class CreateProfile extends Component {
         }
 
         axios.post('http://localhost:5000/users/add', user)
-            .then(res => console.log(res.data));
-
-        window.location = '/users/';
+            .then(res => console.log(res.data))
+            .catch(() => {
+                window.location = '/users/failtoadd';
+              })
+            window.location = '/users';
     }
 
     render() {
         return (
+
         <div>
             <h3>Create User</h3>
             <form onSubmit={this.onSubmit}>
