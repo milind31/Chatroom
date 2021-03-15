@@ -38,11 +38,11 @@ export default class SelectUser extends Component{
 
     render() {
         return (
-            <div>
-                <h1>Welcome! Please select your username to begin!</h1>
+            <div className="select-user">
+                <h1>Welcome!</h1>
+                <h2>Please select your username to begin!</h2>
                 <form onSubmit={this.onSubmit.bind(this)}>
                     <div className="form-group">
-                        <label>Username: </label>
                         <select ref="userInput"
                             required
                             className="form-control"
