@@ -3,21 +3,29 @@ import axios from 'axios';
 import Navbar from './navbar';
 import ViewProfile from './view-profile';
 import { Link } from 'react-router-dom';
-import { Form, Row, Col } from 'react-bootstrap';
+import { Form, Row, Col, Card, CardGroup } from 'react-bootstrap';
 
 const User = props => (
-  <tr>
-    <td>{props.user.username}</td>
-    <td>{props.user.occupation}</td>
-    <td>{props.user.city}</td>
-    <td>{props.user.state}</td>
-    <td>{props.user.favorite_music_genre}</td>
-    <td>{props.user.likes_sports? "Yes":"No"}</td>
-    <td>{props.user.likes_to_travel? "Yes":"No"}</td>
-    <td>
-      <Link to={"/users/" + props.user._id} render={() => <ViewProfile/>}>View</Link>
-    </td>
-  </tr>
+  <div className='user-card'>
+    <Card
+      bg='dark'
+      text='white'
+      style={{ width: '20rem' }}
+    >
+      <Card.Body>
+        <Card.Text>
+          <h1>{props.user.username}</h1>
+          <h3>{props.user.city}, {props.user.state}</h3>
+          <p>Favorite Music Genre: {props.user.favorite_music_genre}</p>
+          <p>{props.user.likes_sports? "Likes Sports":"Doesn't Like Sports"}</p>
+          <p>{props.user.likes_to_travel? "Likes to Travel":"Doesn't Like to Travel"}</p>
+        </Card.Text>
+      </Card.Body>
+      <Card.Footer>
+        <Link to={"/users/" + props.user._id} className="link" render={() => <ViewProfile/>}>View</Link>
+      </Card.Footer>
+    </Card>
+  </div>
 )
 
 export default class UsersList extends Component {
@@ -123,26 +131,9 @@ export default class UsersList extends Component {
                 </Col>
             </Row>
         </Form> )}
-
-        <table className="table">
-          {!this.state.loading && (
-          <thead className="thead-light">
-            <tr>
-              <th>Username</th>
-              <th>Occupation</th>
-              <th>City</th>
-              <th>State</th>
-              <th>Favorite Music Genre</th>
-              <th>Likes Sports</th>
-              <th>Likes to Travel</th>
-              <th></th>
-            </tr>
-          </thead>
-          )}
-          <tbody>
-            {!this.state.loading && this.usersList() }
-          </tbody>
-        </table>
+        <CardGroup className="card-group">
+          {!this.state.loading && this.usersList() }
+        </CardGroup>
       </div>
     )
   }

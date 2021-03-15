@@ -18,6 +18,11 @@ code {
   font-family: 'Noto Sans';
 }
 
+/* Navbar */
+.nav-link {
+  transition: 0.5s ease-in-out;
+}
+
 /* View Profile */
 .usernameHeader {
   text-align: center;
@@ -68,4 +73,51 @@ code {
 .select-user h1 {
   padding-top: 35px;
   font-size: 90px;
+}
+
+.link {
+  color: #FFF;
+  transition: 0.5s ease-in-out;
+}
+.link:hover {
+   color: rgb(223, 99, 17);
+   text-decoration: none;
+}
+
+
+.user-card {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  margin-right: 25px;
+  box-shadow: 0 4px 5px rgba(0,0,0,0.015);
+  transition: box-shadow 0.5s ease-in-out;
+  position: relative;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+.user-card:hover {
+  box-shadow: 0 10px 11px rgba(0,0,0,0.30);
+  transform: translateY(-0.4%); /* or try 50% */
+}
+
+.user-card {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  margin-right: 25px;
+  box-shadow: 0 4px 5px rgba(0,0,0,0.015);
+  transition: box-shadow 0.5s ease-in-out;
+  position: relative;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+.card-group {
+  display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
