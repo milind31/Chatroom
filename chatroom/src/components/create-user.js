@@ -67,7 +67,6 @@ export default class CreateProfile extends Component {
         });
     }
     
-
     onSubmit(e) {
         e.preventDefault();
 
@@ -91,7 +90,6 @@ export default class CreateProfile extends Component {
 
     render() {
         return (
-
         <div>
             <br/>
             <h3>Create User</h3>

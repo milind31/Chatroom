@@ -38,7 +38,6 @@ export default class ViewMessages extends Component {
       .catch(() => {
         window.location = "/messages/view/conversation/notfound";
       })
-
   }
 
   incomingMessageList() {

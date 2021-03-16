@@ -77,7 +77,6 @@ export default class EditProfile extends Component {
             favorite_music_genre: e.target.value
         });
     }
-    
 
     onSubmit(e) {
         e.preventDefault();

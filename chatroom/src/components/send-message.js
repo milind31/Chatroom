@@ -25,7 +25,6 @@ export default class SendMessage extends Component {
             this.setState({
                 user_from: response.data.username,
                 user_from_id: currentUserID
-
             })
         })
         axios.get('http://localhost:5000/users/'+this.props.match.params.id)
